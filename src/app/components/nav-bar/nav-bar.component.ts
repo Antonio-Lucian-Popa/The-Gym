@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
+  stateOfNotificationBox = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeStateOfNotificationBox() {
+    this.stateOfNotificationBox = !this.stateOfNotificationBox;
   }
 
 }

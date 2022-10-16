@@ -2,6 +2,7 @@
 
 .container-nav {
   margin: 15px 30px 100px 20px;
+  padding: 25px 0;
   .container {
     position: fixed;
   }
@@ -12,6 +13,9 @@
     }
   }
 
+  .container {
+    z-index: 99999;
+  }
 
   .container-notification {
     position: relative;
@@ -34,13 +38,36 @@
 
 
 .notification-box {
-  box-shadow: 2px 3px 15px 5px rgba(0,0,0,0.37);
-  width: 300px;
-  border-radius: 5px;
-  padding: 10px 10px;
-  position: fixed;
-  left: 83%;
-  bottom: 70%;
-  z-index: 99999;
-  background: white;
+  box-shadow: 2px 3px 15px 5px rgb(0 0 0 / 37%);
+    width: 300px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    position: absolute;
+    right: 3%;
+    z-index: 99999;
+    background: white;
+    cursor: auto;
+
+    .top {
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    .container-delete {
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+
+    .link {
+      cursor: pointer;
+      text-decoration: none;
+    }
+}
+
+.notification {
+  .image {
+    img {
+      width: 50px;
+    }
+  }
 }

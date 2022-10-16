@@ -4,26 +4,32 @@
       <h2>The Gym</h2>
     </div>
     <div class="container-notification">
-      <mat-icon class="material-symbols-outlined">
+      <mat-icon class="material-symbols-outlined" (click)="changeStateOfNotificationBox()">
         notifications
       </mat-icon>
       <div class="red"></div>
-    </div>
-  </div>
-</div>
-
-<div class="notification-box">
-  <div class="top d-flex align-items-center justify-content-between">
-    <h2>Notificari</h2>
-    <a>Marcheaza-le pe toate ca citit</a>
-  </div>
-  <div class="body">
-    <div class="notification">
-      <div class="image"></div>
-      <div class="container-description">
-        <strong>Andrei Luke</strong>
-        <p> expira abonamentul maine</p>
-        <span>Wed, Oct 12 th 2022, 9:22 am</span>
+      <div class="notification-box" [style.display]="stateOfNotificationBox ? 'block' : 'none'">
+        <div class="top mb-4 d-flex align-items-center justify-content-between">
+          <h2 class="m-0">Notificari</h2>
+          <a class="link">Marcheaza-le pe toate ca citit</a>
+        </div>
+        <div class="body">
+          <div class="notification d-flex align-items-center justify-content-between">
+            <div class="image">
+              <img src="./assets/user.png" alt="">
+            </div>
+            <div class="container-description">
+              <strong>Andrei Luke</strong>
+              <p> expira abonamentul maine</p>
+              <span>Wed, Oct 12 th 2022, 9:22 am</span>
+            </div>
+            <div class="container-delete">
+              <mat-icon class="material-symbols-outlined">
+                delete
+              </mat-icon>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

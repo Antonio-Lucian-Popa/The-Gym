@@ -3,9 +3,11 @@
 .container-nav {
   margin: 15px 30px 100px 20px;
   padding: 25px 0;
+
   .container {
     position: fixed;
   }
+
   .logo {
     h2 {
       font-family: 'Dancing Script', cursive;
@@ -24,6 +26,7 @@
     mat-icon {
       font-size: 25px;
     }
+
     .red {
       background-color: red;
       height: 15px;
@@ -34,12 +37,10 @@
       left: 53%;
     }
   }
-}
 
-
-.notification-box {
-  box-shadow: 2px 3px 15px 5px rgb(0 0 0 / 37%);
-    width: 300px;
+  .notification-box {
+    box-shadow: 2px 3px 15px 5px rgb(0 0 0 / 37%);
+    width: 320px;
     border-radius: 5px;
     padding: 10px 10px;
     position: absolute;
@@ -48,8 +49,27 @@
     background: white;
     cursor: auto;
 
+    .body {
+      height: 300px;
+      overflow-y: auto;
+    }
+
     .top {
       border-bottom: 1px solid #e2e2e2;
+    }
+
+    .bottom {
+      border-top: 1px solid #e2e2e2;
+
+      .link {
+        margin: 10px 0 5px 0;
+      }
+    }
+
+    .container-description {
+      p {
+        margin-bottom: 5px !important;
+      }
     }
 
     .container-delete {
@@ -62,12 +82,22 @@
       cursor: pointer;
       text-decoration: none;
     }
-}
 
-.notification {
-  .image {
-    img {
-      width: 50px;
+    .no-notifications {
+      margin-bottom: 20px;
+
+      .msg-no-notifications {
+        font-weight: bold;
+      }
     }
   }
+
+  .notification {
+    .image {
+      img {
+        width: 45px;
+      }
+    }
+  }
+
 }

@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
     word: ['']
   });
 
+  searchSubscription: any;
+
   selection = new SelectionModel<any>(true, []);
 
   userData: User[] = [];
@@ -33,8 +35,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
    // this.wordToSearch.get('word')!.valueChanges()
+   this.searchSubscription = this.wordToSearch.get('word')!.valueChanges.subscribe((w)=>{
+    console.log(w);
+    this.searchUser(w!);
+  });
     this.getDataInTable();
-    // trebuie pus in subscribe la treieve de user
   }
 
   getDataInTable(): void {
@@ -155,14 +160,19 @@ export class HomeComponent implements OnInit {
   searchUser(wordToSearch: string): void {
     this.filteredUsers = this.userData.filter(user => user.firstName.includes(wordToSearch)
     || user.lastName.includes(wordToSearch)
-    || user.phoneNumber.includes(wordToSearch)
-    || user.email.includes(wordToSearch)
+    || user.phoneNumber && user.phoneNumber.includes(wordToSearch)
+    || user.email && user.email.includes(wordToSearch)
     );
+    console.log(this.filteredUsers);
     if(wordToSearch) {
       this.dataSource = new MatTableDataSource(this.filteredUsers);
     } else {
       this.dataSource = new MatTableDataSource(this.userData);
     }
+  }
+
+  ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 
 }

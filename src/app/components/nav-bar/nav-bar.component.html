@@ -1,51 +1,10 @@
 <div class="container-nav d-flex align-items-center justify-content-between">
-  <div class="container d-flex align-items-center justify-content-between w-100">
+  <div class="nav d-flex align-items-center justify-content-between w-100">
     <div class="logo">
       <h2>The Gym</h2>
     </div>
     <div class="container-notification">
-      <mat-icon class="material-symbols-outlined" (click)="changeStateOfNotificationBox()">
-        notifications
-      </mat-icon>
-      <div class="red"></div>
-      <div class="notification-box" [style.display]="stateOfNotificationBox ? 'block' : 'none'">
-        <div class="top mb-4 d-flex align-items-center justify-content-between">
-          <h2 class="m-0">Notificari</h2>
-          <a class="link" *ngIf="haveNotifications">Marcheaza-le pe toate ca citit</a>
-        </div>
-        <div class="body" *ngIf="haveNotifications">
-          <div class="notification d-flex align-items-center justify-content-between">
-            <div class="image">
-              <img src="./assets/user.png" alt="">
-            </div>
-            <div class="container-description">
-              <strong>Andrei Luke</strong>
-              <p> expira abonamentul maine</p>
-              <span>Wed, Oct 12 th 2022, 9:22 am</span>
-            </div>
-            <div class="container-delete">
-              <mat-icon class="material-symbols-outlined">
-                delete
-              </mat-icon>
-            </div>
-          </div>
-        </div>
-
-        <!---------No notification--------------->
-        <div class="no-notifications d-flex flex-column align-items-center justify-content-center" *ngIf="!haveNotifications">
-          <div class="container-image">
-            <img src="./assets/no-notifications.png" alt="">
-          </div>
-          <span class="msg-no-notifications">Nu aveti notificari pe moment</span>
-        </div>
-        <!------------------------>
-
-        <div class="bottom mt-4 d-flex align-items-center justify-content-center" *ngIf="haveNotifications">
-          <a class="link">
-            Stergele pe toate
-          </a>
-        </div>
-      </div>
+       <app-notification-list [stateOfNotificationBox]="stateOfNotificationBox" (stateOfNotificationBoxEvent)="changeStateOfNotificationBox($event)"></app-notification-list>
     </div>
   </div>
 </div>

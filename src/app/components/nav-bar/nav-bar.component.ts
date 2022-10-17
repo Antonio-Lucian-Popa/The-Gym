@@ -15,8 +15,8 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeStateOfNotificationBox() {
-    this.stateOfNotificationBox = !this.stateOfNotificationBox;
+  changeStateOfNotificationBox(event: any) {
+    this.stateOfNotificationBox = event;
   }
 
 }

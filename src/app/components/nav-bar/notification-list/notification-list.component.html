@@ -1,0 +1,44 @@
+<mat-icon class="material-symbols-outlined" (click)="changeStateOfNotificationBox()">
+  notifications
+</mat-icon>
+<div class="red" *ngIf="haveNewNotification"></div>
+
+<div class="notification-box" [style.display]="stateOfNotificationBox ? 'block' : 'none'">
+  <div class="top mb-4 d-flex align-items-center justify-content-between">
+    <h2 class="m-0">Notificari</h2>
+    <a class="link" *ngIf="haveNotifications" (click)="markAllAsRead()">Marcheaza-le pe toate ca citit</a>
+  </div>
+  <div class="body" id="style-4" *ngIf="haveNotifications">
+    <div class="notification d-flex align-items-center justify-content-between" *ngFor="let notification of notifications">
+      <div class="image">
+        <img src="./assets/user.png" alt="">
+        <div class="blue" *ngIf="notification.new"></div>
+      </div>
+      <div class="container-description" (click)="markNotificationAsRead(notification.id)">
+        <strong>{{notification.title}}</strong>
+        <p> {{notification.description}}</p>
+        <span>{{getTimeForNotification(notification.createdAt)}}</span>
+      </div>
+      <div class="container-delete">
+        <mat-icon class="material-symbols-outlined" (click)="delete(notification.id)">
+          delete
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <!---------No notification--------------->
+  <div class="no-notifications d-flex flex-column align-items-center justify-content-center" *ngIf="!haveNotifications">
+    <div class="container-image">
+      <img src="./assets/no-notifications.png" alt="">
+    </div>
+    <span class="msg-no-notifications">Nu aveti notificari pe moment</span>
+  </div>
+  <!------------------------>
+
+  <div class="bottom mt-4 d-flex align-items-center justify-content-center" *ngIf="haveNotifications">
+    <a class="link" (click)="deleteAllNotifications()">
+      Stergele pe toate
+    </a>
+  </div>
+</div>

@@ -2,12 +2,14 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserService } from './../../shared/services/user.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/shared/interfaces/user';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUser } from 'src/app/shared/interfaces/createUser';
-import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,11 @@ import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild(MatSort, { static: true })
+  sort!: MatSort;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   displayedColumns: string[] = ['select', 'profileImageId', 'firstName', 'lastName', 'birthday', 'email', 'phoneNumber', 'subscription', 'expiredSubscription'];
   dataSource = new MatTableDataSource<any>;
@@ -34,7 +41,6 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-   // this.wordToSearch.get('word')!.valueChanges()
    this.searchSubscription = this.wordToSearch.get('word')!.valueChanges.subscribe((w)=>{
     console.log(w);
     this.searchUser(w!);
@@ -51,6 +57,8 @@ export class HomeComponent implements OnInit {
       });
       this.filteredUsers = this.userData;
       this.dataSource = new MatTableDataSource(this.filteredUsers);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -158,10 +166,10 @@ export class HomeComponent implements OnInit {
   }
 
   searchUser(wordToSearch: string): void {
-    this.filteredUsers = this.userData.filter(user => user.firstName.includes(wordToSearch)
-    || user.lastName.includes(wordToSearch)
-    || user.phoneNumber && user.phoneNumber.includes(wordToSearch)
-    || user.email && user.email.includes(wordToSearch)
+    this.filteredUsers = this.userData.filter(user => user.firstName.toLocaleLowerCase().includes(wordToSearch.toLocaleLowerCase())
+    || user.lastName.toLocaleLowerCase().includes(wordToSearch.toLocaleLowerCase())
+    || user.phoneNumber && user.phoneNumber.includes(wordToSearch.toLocaleLowerCase())
+    || user.email && user.email.toLocaleLowerCase().includes(wordToSearch.toLocaleLowerCase())
     );
     console.log(this.filteredUsers);
     if(wordToSearch) {
@@ -169,6 +177,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.dataSource = new MatTableDataSource(this.userData);
     }
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnDestroy() {

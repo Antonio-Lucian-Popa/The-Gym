@@ -14,6 +14,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InfoModalComponent } from './info-modal/info-modal.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [ MatDatepickerModule]
 })

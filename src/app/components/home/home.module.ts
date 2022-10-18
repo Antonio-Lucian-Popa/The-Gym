@@ -16,13 +16,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { InfoModalComponent } from './info-modal/info-modal.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     AddUserComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    EditUserModalComponent
   ],
   imports: [
     CommonModule,

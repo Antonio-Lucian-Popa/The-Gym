@@ -13,6 +13,14 @@
         </mat-icon>
         Adauga User
       </button>
+
+      <button mat-raised-button color="primary" class="add-user" [disabled]="this.selection.selected.length === 0" (click)="editUser()">
+        <mat-icon class="material-symbols-outlined icon-user-action">
+          edit
+        </mat-icon>
+        Editeaza User
+      </button>
+
       <button mat-raised-button color="warn" [disabled]="this.selection.selected.length === 0" (click)="removeUser()">
         <mat-icon class="material-symbols-outlined icon-user-action">
           person_remove

@@ -1,3 +1,4 @@
+import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 import { InfoModalComponent } from './info-modal/info-modal.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserService } from './../../shared/services/user.service';
@@ -179,6 +180,35 @@ export class HomeComponent implements OnInit {
     }
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  editUser(): void {
+    const userToEdit: User[] = this.selection['_selected'];
+
+    // if is more that 1 user selected, show a dialog info to inform the user to select just one to edit
+    if(userToEdit.length > 1) {
+      // show dialog
+      const dialogRef = this.dialog.open(InfoModalComponent,
+        {
+          data: {
+            title: "Actiune nepermisa",
+            description: "Nu puteti sa editati mai mult decat un user pe rand",
+            typeOfInfo: "alert"
+          }
+        });
+
+      dialogRef.afterClosed().subscribe();
+    } else if(userToEdit.length === 1) {
+      const dialogRef = this.dialog.open(EditUserModalComponent,
+        {
+          data: {
+            user: userToEdit[0]
+          },
+          width: '500px'
+        });
+
+      dialogRef.afterClosed().subscribe();
+    }
   }
 
   ngOnDestroy() {

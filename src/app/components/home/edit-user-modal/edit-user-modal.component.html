@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Editeaza User</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="user">
+    <div class="d-flex align-items-center justify-content-between">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nume</mat-label>
+        <input type="text" matInput formControlName="firstName" [errorStateMatcher]="matcher" placeholder="Ex. Alin">
+        <mat-error *ngIf="user.hasError('email')">
+          Te rugam sa introduci un nume valid
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Prenume</mat-label>
+        <input type="text" matInput formControlName="lastName" [errorStateMatcher]="matcher" placeholder="Ex. Popescu">
+        <mat-error *ngIf="user.hasError('lastName')">
+          Te rugam sa introduci un prenume valid
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <mat-form-field appearance="fill" class="example-form-field">
+        <mat-label>Zi de nastere</mat-label>
+        <input matInput [matDatepicker]="datepicker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Telefon</mat-label>
+        <input type="text" matInput formControlName="phoneNumber" [errorStateMatcher]="matcher"
+          placeholder="Ex. +40 0724654532">
+        <mat-error *ngIf="user.hasError('phoneNumber')">
+          Te rugam sa introduci un numar de telefon valid
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Numar de luni platite</mat-label>
+        <input type="number" matInput formControlName="numberOfMonthsPayed" [errorStateMatcher]="matcher"
+          placeholder="Ex. +40 0724654532">
+        <mat-error *ngIf="user.hasError('numberOfMonthsPayed')">
+          Te rugam sa introduci un numar de luni valid
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="$event.preventDefault(); newSubscription()" [disabled]="isNewSubscriptionBtnPressed"
+        cdkFocusInitial>Reinoieste abonament</button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="$event.preventDefault(); editUser()" cdkFocusInitial>Salveaza</button>
+</mat-dialog-actions>

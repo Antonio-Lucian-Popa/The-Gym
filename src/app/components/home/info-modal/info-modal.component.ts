@@ -10,6 +10,7 @@ export class InfoModalComponent implements OnInit {
 
   title = '';
   description = '';
+  typeOfInfo = '';
 
   constructor(
     public dialogRef: MatDialogRef<boolean>,
@@ -17,6 +18,7 @@ export class InfoModalComponent implements OnInit {
     ) {
       this.title = data.title;
       this.description = data.description;
+      this.typeOfInfo = data.typeOfInfo;
      }
 
   ngOnInit(): void {

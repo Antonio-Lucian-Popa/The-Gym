@@ -21,6 +21,10 @@ export class UserService {
     return this.http.get<User[]>(`${this.USER_URL}/findAll`);
   }
 
+  editUser(user: User, newSubscription?: boolean): Observable<void> {
+    return this.http.put<void>(`${this.USER_URL}/edit${newSubscription ? '/' + newSubscription : ''}`, user);
+  }
+
   removeUser(userIds: string[]): Observable<void> {
     return this.http.put<void>(`${this.USER_URL}/remove`, userIds);
   }

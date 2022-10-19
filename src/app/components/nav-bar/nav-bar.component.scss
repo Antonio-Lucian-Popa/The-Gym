@@ -5,10 +5,13 @@
   padding-left: 20px;
   // padding: 25px 0;
   position: relative;
-  height: 100px;
+  height: 120px;
+  z-index: 999;
 
   .nav {
     position: fixed;
+    background: #ffff;
+    padding: 28px 53px 28px 0;
   }
 
   .logo {

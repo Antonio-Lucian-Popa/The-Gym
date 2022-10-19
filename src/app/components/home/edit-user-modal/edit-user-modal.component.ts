@@ -1,5 +1,5 @@
 import { UserService } from './../../../shared/services/user.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreateUser } from 'src/app/shared/interfaces/createUser';
@@ -10,7 +10,7 @@ import { MyErrorStateMatcher } from '../add-user/add-user.component';
   templateUrl: './edit-user-modal.component.html',
   styleUrls: ['./edit-user-modal.component.scss']
 })
-export class EditUserModalComponent implements OnInit {
+export class EditUserModalComponent implements OnInit, OnDestroy {
 
   user = this.fb.group({
     firstName: ['', Validators.required],
@@ -24,6 +24,8 @@ export class EditUserModalComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   isNewSubscriptionBtnPressed = false;
+
+  editSubscription: any;
 
   constructor(
     private fb: FormBuilder,
@@ -46,13 +48,34 @@ export class EditUserModalComponent implements OnInit {
   }
 
   editUser(): void {
-    const userLocal = this.user.value;
-    userLocal['id'] = this.data.user.id;
-    this.userService.
+    const firstName = this.user.get('firstName')!.value;
+    const lastName = this.user.get('lastName')!.value;
+    const birthday = this.user.get('birthday')!.value;
+    const email = this.user.get('email')!.value;
+    const phoneNumber = this.user.get('phoneNumber')!.value;
+    const numberOfMonthsPayed = this.user.get('numberOfMonthsPayed')!.value;
+    const userLocal = {
+      id: this.data.user.id,
+      firstName: firstName ? firstName : this.data.user.firstName,
+      lastName: lastName ? lastName : this.data.user.lastName,
+      birthday: birthday ? birthday : this.data.user.birthday,
+      email: email ? email : this.data.user.email,
+      phoneNumber: phoneNumber ? phoneNumber : this.data.user.phoneNumber,
+      numberOfMonthsPayed: numberOfMonthsPayed ? numberOfMonthsPayed : this.data.user.numberOfMonthsPayed
+    };
+    if(this.isNewSubscriptionBtnPressed) {
+      this.editSubscription = this.userService.editUser(userLocal, true).subscribe(() => this.dialogRef.close());
+    } else {
+      this.editSubscription = this.userService.editUser(userLocal).subscribe(() => this.dialogRef.close());
+    }
   }
 
   newSubscription(): void {
     this.isNewSubscriptionBtnPressed = true;
+  }
+
+  ngOnDestroy(): void {
+    this.editSubscription.unsubscribe();
   }
 
 }

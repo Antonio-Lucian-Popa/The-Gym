@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateUser } from '../interfaces/createUser';
+import { EditUser } from '../interfaces/editUser';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -21,8 +22,8 @@ export class UserService {
     return this.http.get<User[]>(`${this.USER_URL}/findAll`);
   }
 
-  editUser(user: User, newSubscription?: boolean): Observable<void> {
-    return this.http.put<void>(`${this.USER_URL}/edit${newSubscription ? '/' + newSubscription : ''}`, user);
+  editUser(user: EditUser, newSubscription?: boolean): Observable<void> {
+    return this.http.put<void>(`${this.USER_URL}/edit${newSubscription ? '?isNewSubscription=' + newSubscription : ''}`, user);
   }
 
   removeUser(userIds: string[]): Observable<void> {

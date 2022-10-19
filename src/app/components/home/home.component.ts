@@ -207,7 +207,10 @@ export class HomeComponent implements OnInit {
           width: '500px'
         });
 
-      dialogRef.afterClosed().subscribe();
+      dialogRef.afterClosed().subscribe(() => {
+        this.selection['_selected'] = [];
+        this.getDataInTable();
+      });
     }
   }
 

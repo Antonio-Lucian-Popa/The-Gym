@@ -83,12 +83,12 @@
 
       <ng-container matColumnDef="subscription">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Abonament </th>
-        <td mat-cell *matCellDef="let element"> {{element.subscription}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.subscription | date: 'dd/MM/yyyy'}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="expiredSubscription">
+      <ng-container matColumnDef="endSubscription">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Scadere Abonament </th>
-        <td mat-cell *matCellDef="let element"> {{element.expiredSubscription}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.endSubscription | date: 'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

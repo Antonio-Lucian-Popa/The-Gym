@@ -43,8 +43,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Numar de luni platite</mat-label>
-        <input type="number" matInput formControlName="numberOfMonthsPayed" [errorStateMatcher]="matcher"
-          placeholder="Ex. +40 0724654532">
+        <input type="number" matInput formControlName="numberOfMonthsPayed" min="1" [errorStateMatcher]="matcher"
+          placeholder="Ex. 1">
         <mat-error *ngIf="user.hasError('numberOfMonthsPayed')">
           Te rugam sa introduci un numar de luni valid
         </mat-error>

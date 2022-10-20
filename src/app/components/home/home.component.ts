@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'profileImageId', 'firstName', 'lastName', 'birthday', 'email', 'phoneNumber', 'subscription', 'expiredSubscription'];
+  displayedColumns: string[] = ['select', 'profileImageId', 'firstName', 'lastName', 'birthday', 'email', 'phoneNumber', 'subscription', 'endSubscription'];
   dataSource = new MatTableDataSource<any>;
 
   wordToSearch = this.fb.group({
@@ -51,11 +51,12 @@ export class HomeComponent implements OnInit {
 
   getDataInTable(): void {
     this.userService.findAllUsers().subscribe(users => {
-      this.userData = users.map(user => {
-        user.subscription = this.getDate(user.subscription);
-        user.expiredSubscription = this.getDate(user.subscription, true, user.numberOfMonthsPayed);
-        return user;
-      });
+      // this.userData = users.map(user => {
+      //   user.subscription = this.getDate(user.subscription);
+      //   user.expiredSubscription = this.getDate(user.subscription, true, user.numberOfMonthsPayed);
+      //   return user;
+      // });
+      this.userData = users;
       this.filteredUsers = this.userData;
       this.dataSource = new MatTableDataSource(this.filteredUsers);
       this.dataSource.sort = this.sort;
@@ -208,7 +209,7 @@ export class HomeComponent implements OnInit {
         });
 
       dialogRef.afterClosed().subscribe(() => {
-        this.selection['_selected'] = [];
+        this.selection.clear();
         this.getDataInTable();
       });
     }

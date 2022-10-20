@@ -9,4 +9,5 @@ export interface User {
   subscription: string;
   expiredSubscription: string;
   numberOfMonthsPayed: number;
+  endSubscription: string;
 }

@@ -48,25 +48,27 @@ export class EditUserModalComponent implements OnInit, OnDestroy {
   }
 
   editUser(): void {
-    const firstName = this.user.get('firstName')!.value;
-    const lastName = this.user.get('lastName')!.value;
-    const birthday = this.user.get('birthday')!.value;
-    const email = this.user.get('email')!.value;
-    const phoneNumber = this.user.get('phoneNumber')!.value;
-    const numberOfMonthsPayed = this.user.get('numberOfMonthsPayed')!.value;
-    const userLocal = {
-      id: this.data.user.id,
-      firstName: firstName ? firstName : this.data.user.firstName,
-      lastName: lastName ? lastName : this.data.user.lastName,
-      birthday: birthday ? birthday : this.data.user.birthday,
-      email: email ? email : this.data.user.email,
-      phoneNumber: phoneNumber ? phoneNumber : this.data.user.phoneNumber,
-      numberOfMonthsPayed: numberOfMonthsPayed ? numberOfMonthsPayed : this.data.user.numberOfMonthsPayed
-    };
-    if(this.isNewSubscriptionBtnPressed) {
-      this.editSubscription = this.userService.editUser(userLocal, true).subscribe(() => this.dialogRef.close());
-    } else {
-      this.editSubscription = this.userService.editUser(userLocal).subscribe(() => this.dialogRef.close());
+    if (this.user.valid) {
+      const firstName = this.user.get('firstName')!.value;
+      const lastName = this.user.get('lastName')!.value;
+      const birthday = this.user.get('birthday')!.value;
+      const email = this.user.get('email')!.value;
+      const phoneNumber = this.user.get('phoneNumber')!.value;
+      const numberOfMonthsPayed = this.user.get('numberOfMonthsPayed')!.value;
+      const userLocal = {
+        id: this.data.user.id,
+        firstName: firstName ? firstName : this.data.user.firstName,
+        lastName: lastName ? lastName : this.data.user.lastName,
+        birthday: birthday ? birthday : this.data.user.birthday,
+        email: email ? email : this.data.user.email,
+        phoneNumber: phoneNumber ? phoneNumber : this.data.user.phoneNumber,
+        numberOfMonthsPayed: numberOfMonthsPayed ? numberOfMonthsPayed : this.data.user.numberOfMonthsPayed
+      };
+      if (this.isNewSubscriptionBtnPressed) {
+        this.editSubscription = this.userService.editUser(userLocal, true).subscribe(() => this.dialogRef.close());
+      } else {
+        this.editSubscription = this.userService.editUser(userLocal).subscribe(() => this.dialogRef.close());
+      }
     }
   }
 

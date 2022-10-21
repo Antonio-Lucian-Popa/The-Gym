@@ -77,7 +77,9 @@ export class EditUserModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.editSubscription.unsubscribe();
+    if(this.editSubscription) {
+      this.editSubscription.unsubscribe();
+    }
   }
 
 }

@@ -39,9 +39,16 @@ export class HomeComponent implements OnInit {
 
   filteredUsers: User[] = [];
 
+  // for device
+  isDevice = false;
+  public innerWidth: any;
+  ////
+
   constructor(private userService: UserService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    this.isDevice = this.innerWidth > 1050 ? false : true;
    this.searchSubscription = this.wordToSearch.get('word')!.valueChanges.subscribe((w)=>{
     console.log(w);
     this.searchUser(w!);

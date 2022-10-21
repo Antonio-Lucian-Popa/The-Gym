@@ -1,36 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
 
-.container-nav {
-  // margin: 15px 30px 100px 20px;
-  padding-left: 20px;
-  // padding: 25px 0;
-  position: relative;
-  height: 120px;
+
+.nav {
+  position: fixed;
+  background: #ffff;
+  padding: 28px 28px 28px 20px;
+  top: 0;
   z-index: 999;
+}
 
-  .nav {
-    position: fixed;
-    background: #ffff;
-    padding: 28px 53px 28px 0;
+.logo {
+  h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 37px;
   }
+}
 
-  .logo {
-    h2 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 37px;
-    }
-  }
+.container-notification {
+  position: relative;
+  cursor: pointer;
 
-  .nav {
-    z-index: 99999;
-    padding-right: 53px;
-  }
-
-  .container-notification {
-    position: relative;
-    cursor: pointer;
-
-
-  }
 
 }

@@ -5,3 +5,9 @@ mat-form-field {
 .date-input-chooser {
   width: 202px;
 }
+
+@media only screen and (max-width: 590px) {
+  .container-input-mobile {
+    flex-direction: column;
+  }
+}

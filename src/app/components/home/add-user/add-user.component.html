@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Adauga User</h2>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="user">
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="container-input-mobile d-flex align-items-center justify-content-between">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nume</mat-label>
         <input type="text" matInput formControlName="firstName" [errorStateMatcher]="matcher" placeholder="Ex. Alin">
@@ -18,7 +18,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="container-input-mobile d-flex align-items-center justify-content-between">
       <mat-form-field appearance="fill" class="example-form-field date-input-chooser">
         <mat-label>Zi de nastere</mat-label>
         <input matInput [matDatepicker]="datepicker" formControlName="birthday">
@@ -41,7 +41,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="container-input-mobile d-flex align-items-center justify-content-between">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
         <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"

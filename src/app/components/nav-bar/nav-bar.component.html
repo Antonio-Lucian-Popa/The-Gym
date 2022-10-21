@@ -1,10 +1,8 @@
-<div class="container-nav d-flex align-items-center justify-content-between">
-  <div class="nav d-flex align-items-center justify-content-between w-100">
-    <div class="logo">
-      <h2>The Gym</h2>
-    </div>
-    <div class="container-notification">
-       <app-notification-list [stateOfNotificationBox]="stateOfNotificationBox" (stateOfNotificationBoxEvent)="changeStateOfNotificationBox($event)"></app-notification-list>
-    </div>
+<div class="nav d-flex align-items-center justify-content-between w-100">
+  <div class="logo">
+    <h2>The Gym</h2>
+  </div>
+  <div class="container-notification">
+     <app-notification-list [stateOfNotificationBox]="stateOfNotificationBox" (stateOfNotificationBoxEvent)="changeStateOfNotificationBox($event)"></app-notification-list>
   </div>
 </div>
